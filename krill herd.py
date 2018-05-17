@@ -199,9 +199,10 @@ def scale_linear(rawpoints, high=1.0, low=0.0):
 
 def output(indiv):
 	hard = 0
-	sof = 0
+	soft = 0
 	for item in indiv:
 		# hard
+		nilai = 0
 		ex = ((item[-1]/room) % (day*3))
 		for x in range(3):
 			if (modeldosen[item[x]][ex] == 1):
@@ -227,7 +228,7 @@ if __name__ == '__main__':
 	# max_time = week * 5 * 3 * room # by week
 	# print (max_time)
 	num_krill = 50
-	maxs = 250
+	maxs = 200
 	d_max = random.uniform(0.002, 0.010)
 	n_max = 0.01
 	v_f = 0.002
@@ -266,7 +267,7 @@ if __name__ == '__main__':
 
 	# ----------- Generation Start
 	for itter in range(maxs):
-	# print "Generasi ", itter
+		print "Generasi ", itter
 	# itter = 1	
 		# ----- Nilai Fitness
 		# print "calculating fitness value"
@@ -376,7 +377,7 @@ if __name__ == '__main__':
 				slot_hari = item[-1]
 				m.write(str(mhs[0])+', '+ str(dospbb)+', '+ str(dospgj1)+', '+str(dospgj2)+','+str(slot_hari)+'\n')
 			hard, soft = output(out)
-			m.write('hard constraint broke ',hard,'\n','Soft constraint ',soft)
+			m.write('hard constraint broke '+str(hard)+'\n'+'Soft constraint '+str(soft))
 
 	# gens = [x for x in range(maxs)]
 	# # print old_avg, new_avg, gens
