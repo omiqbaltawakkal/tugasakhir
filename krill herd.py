@@ -3,6 +3,7 @@ import numpy
 import operator
 import math
 import random
+import time
 import matplotlib.pyplot as plt
 import collections
 
@@ -221,6 +222,7 @@ def output(indiv):
 	return hard, soft
 
 if __name__ == '__main__':
+	start_time = time.time()
 	day = 5
 	week = 2
 	room = 5
@@ -356,19 +358,17 @@ if __name__ == '__main__':
 		# print idx_populasi
 		for x, y in zip(idx_ready, idx_populasi):
 			# print x,y
-			populasi[y] = offsprings[x]
-
-		new_fits = []
-		for indiv in populasi:
-			new_fits.append(single_fitness(diskrit_mod(indiv)))
-		new_avg.append(numpy.mean(new_fits))
-	
+			populasi[y] = offsprings[x]	
 	# print "Going next Generation"
 
 	# ------------ Output
-	# print rawdatadosen[1]
+	new_fits = []
+	for indiv in populasi:
+		new_fits.append(single_fitness(diskrit_mod(indiv)))
+	new_avg = numpy.mean(new_fits)
+
 	for x in range(len(populasi)):
-		with open('propose jadwal-'+str(x)+'.txt', 'w') as m:
+		with open('propose jadwal-'+str(num_krill)+'-krill-'+str(maxs)+'-generations--individu-ke-'+str(x)+'.txt', 'w') as m:
 			out = diskrit_mod(populasi[x])
 			for item, mhs in zip(out, modelmhs):
 				dospbb = rawdatadosen[item[0]][0]
@@ -378,7 +378,16 @@ if __name__ == '__main__':
 				m.write(str(mhs[0])+', '+ str(dospbb)+', '+ str(dospgj1)+', '+str(dospgj2)+','+str(slot_hari)+'\n')
 			hard, soft = output(out)
 			m.write('hard constraint broke '+str(hard)+'\n'+'Soft constraint '+str(soft))
+			m.write('Fitness Value : '+str(single_fitness(out)))
 
+	end_time = time.time()
+	with open('detail-running-time.txt','a') as r:
+		r.write('Detail:'+'\n')
+		r.write('Time Lapse : '+str(end_time-start_time)+'\n')
+		r.write('Avg : '+str(new_avg)+'\n')
+		r.write('Max Generations : '+str(maxs)+'\n')
+		r.write('Num Krill : '+str(num_krill)+'\n')
+		r.write('\n')
 	# gens = [x for x in range(maxs)]
 	# # print old_avg, new_avg, gens
 	# fig = plt.figure()
