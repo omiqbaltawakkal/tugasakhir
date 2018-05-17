@@ -226,8 +226,8 @@ if __name__ == '__main__':
 	max_time = day * 3 * room # by day
 	# max_time = week * 5 * 3 * room # by week
 	# print (max_time)
-	num_krill = 25
-	maxs = 50
+	num_krill = 50
+	maxs = 250
 	d_max = random.uniform(0.002, 0.010)
 	n_max = 0.01
 	v_f = 0.002
@@ -375,6 +375,8 @@ if __name__ == '__main__':
 				dospgj2 = rawdatadosen[item[2]][0]
 				slot_hari = item[-1]
 				m.write(str(mhs[0])+', '+ str(dospbb)+', '+ str(dospgj1)+', '+str(dospgj2)+','+str(slot_hari)+'\n')
+			hard, soft = output(out)
+			m.write('hard constraint broke ',hard,'\n','Soft constraint ',soft)
 
 	# gens = [x for x in range(maxs)]
 	# # print old_avg, new_avg, gens
