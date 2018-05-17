@@ -112,19 +112,19 @@ def single_fitness(indiv):
 				nilai -= 0.5
 	return nilai
 
-def postition(populasi, fitnesss):
-	pos = []
-	half = len(populasi[0])/2
-	for indiv in populasi:
-		if indiv == best_individu:
-			pos.append([0,0])
-		else:
-			#depan, x koordinat
-			x = len(numpy.intersect1d(numpy.unique(indiv[:half]), numpy.unique(best_individu[:half])))   # need review
-			#belakang, y koordinat
-			y = len(numpy.intersect1d(numpy.unique(indiv[half:]), numpy.unique(best_individu[half:])))
-			pos.append([x,y])
-	return pos
+# def postition(populasi, fitnesss):
+# 	pos = []
+# 	half = len(populasi[0])/2
+# 	for indiv in populasi:
+# 		if indiv == best_individu:
+# 			pos.append([0,0])
+# 		else:
+# 			#depan, x koordinat
+# 			x = len(numpy.intersect1d(numpy.unique(indiv[:half]), numpy.unique(best_individu[:half])))   # need review
+# 			#belakang, y koordinat
+# 			y = len(numpy.intersect1d(numpy.unique(indiv[half:]), numpy.unique(best_individu[half:])))
+# 			pos.append([x,y])
+# 	return pos
 
 def sensing_distance(populasi):
 	sensing = []
