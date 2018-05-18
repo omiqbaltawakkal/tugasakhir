@@ -100,8 +100,16 @@ def single_fitness(indiv):
 				nilai -= 1.0
 			else:
 				nilai +=1.0
-	
 	#soft
+	ask = {}
+	for item in indiv:
+		if item[-1] not in ask:
+			ask[item[-1]] = 1
+		else:
+			ask[item[-1]] +=1
+	for isd in ask.values():
+		if isd > 1:
+			nilai -= 1.0
 	d = {}
 	for item in indiv:
 		for angka in item:
@@ -238,7 +246,7 @@ if __name__ == '__main__':
 	w_f = random.random()
 	w_n = random.random()
 	epsilon = 0.0001
-	c_t = 1
+	c_t = 0.75
 	mutate_prob = 0.0001
 	rawdatamahasiswa = opens('dummy.xlsx',0)
 	rawdatadosen = opens('data-mahasiswa.xlsx',1) # [kode, nama, KK, jadwal 1 - 15]
@@ -284,7 +292,7 @@ if __name__ == '__main__':
 		fitness_best = max(fits)
 		fitness_worst = min(fits)
 
-		old_avg.append(numpy.mean(fits))
+		# old_avg.append(numpy.mean(fits))
 
 		# ----------- Sensing Distance
 		# print "calculating sensing distance"
