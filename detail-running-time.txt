@@ -1,96 +1,72 @@
 Detail:
-Time Lapse : 15.5650000572
-Avg : -883.2
-Max Generations : 50
+Time Lapse : 7.90799999237
+Avg : 35.075
+Max Generations : 100
 Num Krill : 20
 
 Detail:
-Time Lapse : 23.256000042
-Avg : -880.05
-Max Generations : 50
+Time Lapse : 12.4609999657
+Avg : 26.083333333333332
+Max Generations : 100
 Num Krill : 30
 
 Detail:
-Time Lapse : 31.8310000896
-Avg : -903.15
-Max Generations : 50
+Time Lapse : 17.1119999886
+Avg : 26.875
+Max Generations : 100
 Num Krill : 40
 
 Detail:
-Time Lapse : 40.3090000153
-Avg : -919.83
-Max Generations : 50
-Num Krill : 50
-
-Detail:
-Time Lapse : 30.998000145
-Avg : -891.45
-Max Generations : 100
-Num Krill : 20
-
-Detail:
-Time Lapse : 46.8680000305
-Avg : -900.3
-Max Generations : 100
-Num Krill : 30
-
-Detail:
-Time Lapse : 47.0720000267
-Avg : -919.85
-Max Generations : 100
-Num Krill : 30
-
-Detail:
-Time Lapse : 80.1669998169
-Avg : -912.15
+Time Lapse : 22.4500000477
+Avg : 37.35
 Max Generations : 100
 Num Krill : 50
 
 Detail:
-Time Lapse : 46.1159999371
-Avg : -917.85
+Time Lapse : 11.7520000935
+Avg : 30.4
 Max Generations : 150
 Num Krill : 20
 
 Detail:
-Time Lapse : 70.7279999256
-Avg : -892.45
+Time Lapse : 18.5320000648
+Avg : 29.833333333333332
 Max Generations : 150
 Num Krill : 30
 
 Detail:
-Time Lapse : 95.8220000267
-Avg : -885.0
+Time Lapse : 25.7490000725
+Avg : 28.65
 Max Generations : 150
 Num Krill : 40
 
 Detail:
-Time Lapse : 120.174000025
-Avg : -909.45
+Time Lapse : 32.3580000401
+Avg : 30.44
 Max Generations : 150
 Num Krill : 50
 
 Detail:
-Time Lapse : 61.3589999676
-Avg : -920.475
+Time Lapse : 15.8499999046
+Avg : 28.6
 Max Generations : 200
 Num Krill : 20
 
 Detail:
-Time Lapse : 93.493999958
-Avg : -920.6
+Time Lapse : 24.5520000458
+Avg : 24.05
 Max Generations : 200
 Num Krill : 30
 
 Detail:
-Time Lapse : 126.088999987
-Avg : -933.7125
+Time Lapse : 34.5620000362
+Avg : 27.7125
 Max Generations : 200
 Num Krill : 40
 
 Detail:
-Time Lapse : 157.42599988
-Avg : -929.25
+Time Lapse : 44.5960001945
+Avg : 27.12
 Max Generations : 200
 Num Krill : 50
 

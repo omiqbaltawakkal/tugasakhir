@@ -92,25 +92,26 @@ def nilai_fitness(new_populasi):
 
 def single_fitness(indiv):
 	nilai = 0.0
+	# hard
 	for item in indiv:
-		# hard
 		ex = ((item[-1]/room) % (day*3))
 		for x in range(3):
 			if (modeldosen[item[x]][ex] == 1):
-				nilai -= 2.0
+				nilai -= 1.0
 			else:
 				nilai +=1.0
-		#soft
-		d = {}
-		for item in indiv:
-			for angka in item:
-				if angka not in d:
-					d[angka] = 1
-				else:
-					d[angka] +=1
-		for isd in d.values():
-			if isd > (1/3) * day:
-				nilai -= 0.5
+	
+	#soft
+	d = {}
+	for item in indiv:
+		for angka in item:
+			if angka not in d:
+				d[angka] = 1
+			else:
+				d[angka] +=1
+	for isd in d.values():
+		if isd > (1/3) * day:
+			nilai -= 0.25
 	return nilai
 
 # def postition(populasi, fitnesss):
@@ -208,17 +209,17 @@ def output(indiv):
 		for x in range(3):
 			if (modeldosen[item[x]][ex] == 1):
 				nilai += 1
-		#soft
-		d = {}
-		for item in indiv:
-			for angka in item:
-				if angka not in d:
-					d[angka] = 1
-				else:
-					d[angka] +=1
-		for isd in d.values():
-			if isd > (1/3) * day:
-				soft +=1
+	#soft
+	d = {}
+	for item in indiv:
+		for angka in item:
+			if angka not in d:
+				d[angka] = 1
+			else:
+				d[angka] +=1
+	for isd in d.values():
+		if isd > (1/3) * day:
+			soft +=1
 	return hard, soft
 
 if __name__ == '__main__':
@@ -367,18 +368,20 @@ if __name__ == '__main__':
 		new_fits.append(single_fitness(diskrit_mod(indiv)))
 	new_avg = numpy.mean(new_fits)
 
-	for x in range(len(populasi)):
-		with open('propose jadwal-'+str(num_krill)+'-krill-'+str(maxs)+'-generations--individu-ke-'+str(x)+'.txt', 'w') as m:
-			out = diskrit_mod(populasi[x])
-			for item, mhs in zip(out, modelmhs):
-				dospbb = rawdatadosen[item[0]][0]
-				dospgj1 = rawdatadosen[item[1]][0]
-				dospgj2 = rawdatadosen[item[2]][0]
-				slot_hari = item[-1]
-				m.write(str(mhs[0])+', '+ str(dospbb)+', '+ str(dospgj1)+', '+str(dospgj2)+','+str(slot_hari)+'\n')
-			hard, soft = output(out)
-			m.write('hard constraint broke '+str(hard)+'\n'+'Soft constraint '+str(soft))
-			m.write('Fitness Value : '+str(single_fitness(out)))
+	# for x in range(len(populasi)):
+	# with open('propose jadwal-'+str(num_krill)+'-krill-'+str(maxs)+'-generations--individu-ke-'+str(x)+'.txt', 'w') as m:
+	with open('propose jadwal-bestindiv-'+str(num_krill)+'-krill-'+str(maxs)+'-generations.txt', 'w') as m:
+		# out = diskrit_mod(populasi[x])
+		out = diskrit_mod(best_individu)
+		for item, mhs in zip(out, modelmhs):
+			dospbb = rawdatadosen[item[0]][0]
+			dospgj1 = rawdatadosen[item[1]][0]
+			dospgj2 = rawdatadosen[item[2]][0]
+			slot_hari = item[-1]
+			m.write(str(mhs[0])+', '+ str(dospbb)+', '+ str(dospgj1)+', '+str(dospgj2)+','+str(slot_hari)+'\n')
+		hard, soft = output(out)
+		m.write('hard constraint broke '+str(hard)+'\n'+'Soft constraint '+str(soft)+'\n')
+		m.write('Fitness Value : '+str(single_fitness(out)))
 
 	end_time = time.time()
 	with open('detail-running-time.txt','a') as r:
@@ -388,6 +391,7 @@ if __name__ == '__main__':
 		r.write('Max Generations : '+str(maxs)+'\n')
 		r.write('Num Krill : '+str(num_krill)+'\n')
 		r.write('\n')
+
 	# gens = [x for x in range(maxs)]
 	# # print old_avg, new_avg, gens
 	# fig = plt.figure()
