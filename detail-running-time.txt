@@ -70,3 +70,105 @@ Avg : 27.12
 Max Generations : 200
 Num Krill : 50
 
+Detail:
+Time Lapse : 8.09200000763
+Avg : 35.325
+Max Generations : 100
+Num Krill : 20
+
+Detail:
+Time Lapse : 8.05500006676
+Avg : 36.175
+Max Generations : 100
+Num Krill : 20
+
+Detail:
+Time Lapse : 12.5529999733
+Avg : 35.31666666666667
+Max Generations : 100
+Num Krill : 30
+
+Detail:
+Time Lapse : 17.3499999046
+Avg : 37.39375
+Max Generations : 100
+Num Krill : 40
+
+Detail:
+Time Lapse : 22.7139999866
+Avg : 37.255
+Max Generations : 100
+Num Krill : 50
+
+Detail:
+Time Lapse : 4.11599993706
+Avg : 37.225
+Max Generations : 50
+Num Krill : 20
+
+Detail:
+Time Lapse : 6.29299998283
+Avg : 35.34166666666667
+Max Generations : 50
+Num Krill : 30
+
+Detail:
+Time Lapse : 8.77600002289
+Avg : 42.39375
+Max Generations : 50
+Num Krill : 40
+
+Detail:
+Time Lapse : 11.4100000858
+Avg : 36.675
+Max Generations : 50
+Num Krill : 50
+
+Detail:
+Time Lapse : 12.0509998798
+Avg : 37.175
+Max Generations : 150
+Num Krill : 20
+
+Detail:
+Time Lapse : 18.7019999027
+Avg : 36.06666666666667
+Max Generations : 150
+Num Krill : 30
+
+Detail:
+Time Lapse : 25.4859998226
+Avg : 36.075
+Max Generations : 150
+Num Krill : 40
+
+Detail:
+Time Lapse : 34.0090000629
+Avg : 35.215
+Max Generations : 150
+Num Krill : 50
+
+Detail:
+Time Lapse : 16.0499999523
+Avg : 43.6
+Max Generations : 200
+Num Krill : 20
+
+Detail:
+Time Lapse : 24.9579999447
+Avg : 37.108333333333334
+Max Generations : 200
+Num Krill : 30
+
+Detail:
+Time Lapse : 35.2739999294
+Avg : 37.5125
+Max Generations : 200
+Num Krill : 40
+
+Detail:
+Time Lapse : 45.381000042
+Avg : 38.225
+Max Generations : 200
+Num Krill : 50
+

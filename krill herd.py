@@ -218,6 +218,15 @@ def output(indiv):
 			if (modeldosen[item[x]][ex] == 1):
 				nilai += 1
 	#soft
+	ask = {}
+	for item in indiv:
+		if item[-1] not in ask:
+			ask[item[-1]] = 1
+		else:
+			ask[item[-1]] +=1
+	for isd in ask.values():
+		if isd > 1:
+			soft += 1
 	d = {}
 	for item in indiv:
 		for angka in item:
