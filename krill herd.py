@@ -68,14 +68,24 @@ def diskrit_mod(indiv):
 			pbb = modelmhs[x][-1][0]
 		temp_item.append(pbb)
 		if modelmhs[x][2] == 1:
-			idx_pgj1 = int(round(indiv[x][1]*len(icm)))
-			idx_pgj2 = int(round(indiv[x][2]*len(icm)))
+			sets = set(icm)
+			sets.discard(pbb)
+			idx_pgj1 = int(round((indiv[x][1]/10)*len(sets)))
+			sets.discard(idx_pgj1)
+			idx_pgj2 = int(round((indiv[x][2]/10)*len(sets)))
 		elif modelmhs[x][2] == 2:
-			idx_pgj1 = int(round(indiv[x][1]*len(side)))
-			idx_pgj2 = int(round(indiv[x][2]*len(side)))
+			sets = set(side)
+			sets.discard(pbb)
+			idx_pgj1 = int(round((indiv[x][1]/10)*len(sets)))
+			sets.discard(idx_pgj1)
+			idx_pgj2 = int(round((indiv[x][2]/10)*len(sets)))
 		else:
-			idx_pgj1 = int(round(indiv[x][1]*len(tele)))
-			idx_pgj2 = int(round(indiv[x][2]*len(tele)))
+			sets = set(tele)
+			sets.discard(pbb)
+			idx_pgj1 = int(round((indiv[x][1]/10)*len(sets)))
+			sets.discard(idx_pgj1)
+			idx_pgj2 = int(round((indiv[x][2]/10)*len(sets)))
+
 		idx_waktu = int(round(indiv[x][3]*max_time))
 		temp_item.append(idx_pgj1)
 		temp_item.append(idx_pgj2)
@@ -91,50 +101,28 @@ def nilai_fitness(new_populasi):
 	return fitnesss
 
 def single_fitness(indiv):
-	nilai = 0.0
+	sc = 0.0
 	# hard
 	for item in indiv:
-		ex = ((item[-1]/room) % (day*3))
-		for x in range(3):
-			if (modeldosen[item[x]][ex] == 1):
-				nilai -= 1.0
-			else:
-				nilai +=1.0
-	#soft
-	ask = {}
+		exa = ((item[-1]/room) % (day*3)) % 15
+		if modeldosen[item[0]][exa] == 1:
+			sc +=penalty_pbb
+		if modeldosen[item[1]][exa] == 1:
+			sc +=penalty_pgj
+		if modeldosen[item[2]][exa] == 1:
+			sc +=penalty_pgj
+	# soft
+	# preference
 	for item in indiv:
-		if item[-1] not in ask:
-			ask[item[-1]] = 1
-		else:
-			ask[item[-1]] +=1
-	for isd in ask.values():
-		if isd > 1:
-			nilai -= 1.0
-	d = {}
-	for item in indiv:
-		for angka in item:
-			if angka not in d:
-				d[angka] = 1
-			else:
-				d[angka] +=1
-	for isd in d.values():
-		if isd > (1/3) * day:
-			nilai -= 0.25
-	return nilai
-
-# def postition(populasi, fitnesss):
-# 	pos = []
-# 	half = len(populasi[0])/2
-# 	for indiv in populasi:
-# 		if indiv == best_individu:
-# 			pos.append([0,0])
-# 		else:
-# 			#depan, x koordinat
-# 			x = len(numpy.intersect1d(numpy.unique(indiv[:half]), numpy.unique(best_individu[:half])))   # need review
-# 			#belakang, y koordinat
-# 			y = len(numpy.intersect1d(numpy.unique(indiv[half:]), numpy.unique(best_individu[half:])))
-# 			pos.append([x,y])
-# 	return pos
+		exs = ((item[-1]/room) % (day*3)) % 15
+		if reference[item[0]][exs] == 0:
+			sc +=penalty_reference
+		if reference[item[1]][exs] == 0:
+			sc +=penalty_reference
+		if reference[item[2]][exs] == 0:
+			sc +=penalty_reference
+	return max_penalty - sc
+	# return sc
 
 def sensing_distance(populasi):
 	sensing = []
@@ -178,7 +166,7 @@ def foraging(indiv, food, k_iibest, x_iibest, f_old):
 def diffusion():
 	# gamma = numpy.array([[round(random.uniform(-1,1), 3) for x in range(0,4)] for y in range(0, len(modelmhs))])
 	gamma = numpy.array([[round(random.uniform(-1,1), 3) for atr in item] for item in indiv])
-	return d_max *(1- (itter/maxs))* gamma
+	return d_max *(1- (itter/float(maxs)))* gamma
 
 def tourney(populasi, tournament_size):
 	selection = populasi[random.randint(0, len(populasi)-1)]
@@ -198,7 +186,8 @@ def crossover(parent_1, parent_2):
 def mutation(indiv):
 	if random.random() < mutate_prob:
 		# indiv[random.randint(0,len(indiv)-1)][random.randint(0, len(indiv[0])-1)] += numpy.array(0.05/single_fitness(diskrit_mod(indiv)))
-		indiv[random.randint(0,len(indiv)-1)][-1] += 0.005
+		indiv[random.randint(0,len(indiv)-1)][-1] += 0.1
+		# indiv[random.randint(0,len(indiv)-1)] += 0.1
 	return indiv
 
 def scale_linear(rawpoints, high=1.0, low=0.0):
@@ -207,65 +196,84 @@ def scale_linear(rawpoints, high=1.0, low=0.0):
     rng = maxs - mins
     return high - (((high - low) * (maxs - rawpoints)) / rng )
 
-def output(indiv):
-	hard = 0
-	soft = 0
+def outs(indiv):
+	# hard
 	for item in indiv:
-		# hard
-		nilai = 0
-		ex = ((item[-1]/room) % (day*3))
-		for x in range(3):
-			if (modeldosen[item[x]][ex] == 1):
-				nilai += 1
-	#soft
-	ask = {}
-	for item in indiv:
-		if item[-1] not in ask:
-			ask[item[-1]] = 1
+		exa = ((item[-1]/room) % (day*3)) % 15
+		if modeldosen[item[0]][exa] == 1:
+			print "bentrok"
 		else:
-			ask[item[-1]] +=1
-	for isd in ask.values():
-		if isd > 1:
-			soft += 1
-	d = {}
+			print "ga bentrok"
+		if modeldosen[item[1]][exa] == 1:
+			print "bentrok"
+		else:
+			print "ga bentrok"
+		if modeldosen[item[2]][exa] == 1:
+			print "bentrok"
+		else:
+			print "ga bentrok"
+		print '\n'
+	# soft
+	# preference
 	for item in indiv:
-		for angka in item:
-			if angka not in d:
-				d[angka] = 1
-			else:
-				d[angka] +=1
-	for isd in d.values():
-		if isd > (1/3) * day:
-			soft +=1
-	return hard, soft
+		exs = ((item[-1]/room) % (day*3)) % 15
+		if reference[item[0]][exs] == 0:
+			print "not ref"
+		else:
+			print "as wish"
+		if reference[item[1]][exs] == 0:
+			print "not ref"
+		else:
+			print "as wish"
+		if reference[item[2]][exs] == 0:
+			print "not ref"
+		else:
+			print "as wish"
+		print '\n'
 
 if __name__ == '__main__':
 	start_time = time.time()
-	day = 5
+	day = 11
 	week = 2
 	room = 5
-	max_time = day * 3 * room # by day
+	max_time = day * 3 *room # by day
 	# max_time = week * 5 * 3 * room # by week
 	# print (max_time)
-	num_krill = 50
-	maxs = 200
+	num_krill = 20
+	maxs = 50
 	d_max = random.uniform(0.002, 0.010)
 	n_max = 0.01
 	v_f = 0.002
 	w_f = random.random()
 	w_n = random.random()
-	epsilon = 0.0001
-	c_t = 0.75
-	mutate_prob = 0.0001
+	epsilon = 0.001
+	c_t = 1
+	mutate_prob = 0.001
+	sched = ["jumat sore", "senin pagi", "senin siang","senin sore","selasa pagi", "selasa siang","selasa sore", "rabu pagi", "rabu siang","rabu sore", "kamis pagi", "kamis siang","kamis sore", "jumat pagi", "jumat siang"]
 	rawdatamahasiswa = opens('dummy.xlsx',0)
 	rawdatadosen = opens('data-mahasiswa.xlsx',1) # [kode, nama, KK, jadwal 1 - 15]
+	rawreference = opens('reference.xlsx',0) 
 	# datadosen= rawdatadosen[1:]
 	# print (rawdatamahasiswa)
 	modelmhs = modelling(rawdatamahasiswa)
 	# print (modelmhs)
 	modeldosen = modellingdosen(rawdatadosen) # masih dengan header
 	# print modeldosen
+	reference = modellingdosen(rawreference)
 	icm , side, tele = class_dosen(modeldosen) # pembagian dosen
+	# print icm
+	# print side
+	# print tele
+	penalty_pbb = 5.0
+	penalty_pgj = 2.0
+	penalty_sched = 1.0
+	penalty_reference = 0.5
+	max_penalty_pbb = len(modelmhs)*penalty_pbb
+	max_penalty_pgj = 2 * penalty_pgj* len(modelmhs)
+	max_penalty_reference = 3*len(modelmhs)*penalty_reference
+	# max_penalty = max_penalty_pbb + max_penalty_pgj
+	max_penalty = max_penalty_pbb + max_penalty_pgj + max_penalty_reference
+	# print max_penalty
 	# print (icm, side, tele)
 	# indiv = mod(modelmhs)
 	# print (indiv)
@@ -300,8 +308,6 @@ if __name__ == '__main__':
 		best_individu = populasi[fits.index(max(fits))]
 		fitness_best = max(fits)
 		fitness_worst = min(fits)
-
-		# old_avg.append(numpy.mean(fits))
 
 		# ----------- Sensing Distance
 		# print "calculating sensing distance"
@@ -351,7 +357,7 @@ if __name__ == '__main__':
 		# print "crossing over and mutating"
 		offsprings = []
 		for x in range(len(populasi)/2):
-			parent_1, parent_2 = tourney(populasi,2), tourney(populasi,2)
+			parent_1, parent_2 = tourney(populasi,3), tourney(populasi,3)
 			parent_1, parent_2 = populasi[random.randint(0, len(populasi)-1)], populasi[random.randint(0, len(populasi)-1)]
 			offs_1, offs_2 = crossover(parent_1,parent_2)
 			offs_1, offs_2 = mutation(offs_1), mutation(offs_2)
@@ -365,14 +371,14 @@ if __name__ == '__main__':
 			regPopulasi[x] = single_fitness(diskrit_mod(offsprings[x]))
 			# print offs, single_fitness(diskrit_mod(offs))
 		# print regPopulasi
-		idx_ready = sorted(regPopulasi, key = regPopulasi.get, reverse=True)[:len(populasi)/2]
+		idx_ready = sorted(regPopulasi, key = regPopulasi.get, reverse=True)[:5]
 		# regen = [offsprings[x] for x in idx_ready]
 		# print idx_ready
 
 		populasi_change = {}
 		for y in range(len(fits)):
 			populasi_change[y] = fits[y]
-		idx_populasi = sorted(populasi_change, key=populasi_change.get, reverse=False)[:len(populasi)/2]
+		idx_populasi = sorted(populasi_change, key=populasi_change.get, reverse=False)[:5]
 		# print idx_populasi
 		for x, y in zip(idx_ready, idx_populasi):
 			# print x,y
@@ -380,44 +386,38 @@ if __name__ == '__main__':
 	# print "Going next Generation"
 
 	# ------------ Output
-	new_fits = []
+	new_pop = []
 	for indiv in populasi:
-		new_fits.append(single_fitness(diskrit_mod(indiv)))
-	new_avg = numpy.mean(new_fits)
+		naws = diskrit_mod(indiv)
+		new_pop.append(naws)
+	# print (new_populasi)
+	fits = nilai_fitness(new_populasi)
+	best_ind = populasi[fits.index(max(fits))]
 
 	# for x in range(len(populasi)):
 	# with open('propose jadwal-'+str(num_krill)+'-krill-'+str(maxs)+'-generations--individu-ke-'+str(x)+'.txt', 'w') as m:
 	with open('propose jadwal-bestindiv-'+str(num_krill)+'-krill-'+str(maxs)+'-generations.txt', 'w') as m:
+	# with open('checking-'+str(num_krill)+'-krill-'+str(maxs)+'-generations.txt', 'w') as m:
 		# out = diskrit_mod(populasi[x])
-		out = diskrit_mod(best_individu)
+		out = diskrit_mod(best_ind)
+		m.write('Fitness Value : '+str(single_fitness(out))+'\n')
+		m.write('Max Penalty : '+str(max_penalty)+'\n')
+		# m.write('Penalty Pbb : '+str(max_penalty_pbb)+', penalty pgj : '+str(max_penalty_pgj)+', penalty_reference : '+str(max_penalty_reference)+'\n')
 		for item, mhs in zip(out, modelmhs):
 			dospbb = rawdatadosen[item[0]][0]
 			dospgj1 = rawdatadosen[item[1]][0]
 			dospgj2 = rawdatadosen[item[2]][0]
-			slot_hari = item[-1]
-			m.write(str(mhs[0])+', '+ str(dospbb)+', '+ str(dospgj1)+', '+str(dospgj2)+','+str(slot_hari)+'\n')
-		hard, soft = output(out)
-		m.write('hard constraint broke '+str(hard)+'\n'+'Soft constraint '+str(soft)+'\n')
-		m.write('Fitness Value : '+str(single_fitness(out)))
+			slot_waktu = ((item[-1]/room) % (day*3)) % 15
+			slot_ruang = ((item[-1] % (day*3)) % 15) % room
+			m.write(str(mhs[0])+', '+ str(dospbb)+', '+ str(dospgj1)+', '+str(dospgj2)+', '+str(item[-1])+', '+str(sched[slot_waktu])+', ruang '+str(slot_ruang)+'\n')
+		# m.write(str(outs(out)))
 
 	end_time = time.time()
 	with open('detail-running-time.txt','a') as r:
 		r.write('Detail:'+'\n')
 		r.write('Time Lapse : '+str(end_time-start_time)+'\n')
-		r.write('Avg : '+str(new_avg)+'\n')
+		r.write('Nilai Fitness : '+str(single_fitness(diskrit_mod(best_individu)))+'\n')
+		r.write('Max Penalty : '+str(max_penalty)+'\n')
 		r.write('Max Generations : '+str(maxs)+'\n')
 		r.write('Num Krill : '+str(num_krill)+'\n')
 		r.write('\n')
-
-	# gens = [x for x in range(maxs)]
-	# # print old_avg, new_avg, gens
-	# fig = plt.figure()
-	# plt.plot(gens, old_avg, c= 'green', label= "old_avg")
-	# plt.plot(gens, new_avg, c = 'red', label= "new_avg")
-	# plt.legend(loc='lower right')
-	# plt.xlabel("Generation- ")
-	# plt.ylabel("Average Fitness")
-	# plt.xlim(-1, maxs)
-	# plt.ylim(0, 100)
-	# plt.grid()
-	# plt.show()
