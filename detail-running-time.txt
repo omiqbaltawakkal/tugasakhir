@@ -1,0 +1,145 @@
+Detail:
+Time Lapse : 152.131000042
+Nilai Fitness : 226.5
+Max Penalty : 283.5
+Percentage: 0.798941798942
+Max Generations : 500
+Num Krill : 50
+
+Detail:
+Time Lapse : 157.116999865
+Nilai Fitness : 206.0
+Max Penalty : 283.5
+Percentage: 0.726631393298
+Max Generations : 500
+Num Krill : 50
+
+Detail:
+Time Lapse : 152.335999966
+Nilai Fitness : 187.0
+Penalty Pbb : 135.0, penalty pgj : 108.0, penalty_reference : 40.5
+Max Penalty : 283.5
+Percentage pbb: 0.47619047619, pgj : 0.380952380952, reference : 0.142857142857Percentage: 0.659611992945
+Max Generations : 500
+Num Krill : 50
+
+Detail:
+Time Lapse : 145.578999996
+Nilai Fitness : 188.0
+Penalty Pbb : 135.0, penalty pgj : 108.0, penalty_reference : 40.5
+Max Penalty : 283.5
+Percentage pbb: 0.47619047619, pgj : 0.380952380952, reference : 0.142857142857
+Percentage: 0.663139329806
+Max Generations : 500
+Num Krill : 50
+
+Detail:
+Time Lapse : 155.148999929
+Nilai Fitness : 169.5
+Penalty Pbb : 135.0, penalty pgj : 108.0, penalty_reference : 40.5
+Max Penalty : 283.5
+Percentage pbb: 0.47619047619, pgj : 0.380952380952, reference : 0.142857142857
+Percentage: 0.597883597884
+Max Generations : 500
+Num Krill : 50
+
+Detail:
+Time Lapse : 336.250999928
+Nilai Fitness : 190.5
+Penalty Pbb : 135.0, penalty pgj : 108.0, penalty_reference : 40.5
+Max Penalty : 283.5
+Percentage pbb: 0.47619047619, pgj : 0.380952380952, reference : 0.142857142857
+Percentage: 0.671957671958
+Max Generations : 500
+Num Krill : 100
+
+Detail:
+Time Lapse : 450.67599988
+Nilai Fitness : 200.5
+Penalty Pbb : 135.0, penalty pgj : 108.0, penalty_reference : 40.5
+Max Penalty : 283.5
+Percentage pbb: 0.47619047619, pgj : 0.380952380952, reference : 0.142857142857
+Percentage: 0.707231040564
+Max Generations : 500
+Num Krill : 100
+
+Detail:
+Time Lapse : 17.3589999676
+Nilai Fitness : 190.5
+Penalty Pbb : 135.0, penalty pgj : 108.0, penalty_reference : 40.5
+Max Penalty : 283.5
+Percentage pbb: 0.47619047619, pgj : 0.380952380952, reference : 0.142857142857
+Percentage: 0.671957671958
+Max Generations : 100
+Num Krill : 25
+
+Detail:
+Time Lapse : 80.253000021
+Nilai Fitness : 205.5
+Penalty Pbb : 135.0, penalty pgj : 108.0, penalty_reference : 40.5
+Max Penalty : 283.5
+Percentage pbb: 0.47619047619, pgj : 0.380952380952, reference : 0.142857142857
+Percentage: 0.724867724868
+Max Generations : 200
+Num Krill : 50
+
+Detail:
+Time Lapse : 199.904000044
+Nilai Fitness : 207.5
+Penalty Pbb : 135.0, penalty pgj : 108.0, penalty_reference : 40.5
+Max Penalty : 283.5
+Percentage pbb: 0.47619047619, pgj : 0.380952380952, reference : 0.142857142857
+Percentage: 0.731922398589
+Max Generations : 500
+Num Krill : 50
+
+Detail:
+Time Lapse : 207.047999859
+Nilai Fitness : 218.5
+Penalty Pbb : 135.0, penalty pgj : 108.0, penalty_reference : 40.5
+Max Penalty : 283.5
+Percentage pbb: 0.47619047619, pgj : 0.380952380952, reference : 0.142857142857
+Percentage: 0.770723104056
+Max Generations : 500
+Num Krill : 50
+
+Detail:
+Time Lapse : 189.018000126
+Nilai Fitness : 203.5
+Penalty Pbb : 135.0, penalty pgj : 108.0, penalty_reference : 40.5
+Max Penalty : 283.5
+Percentage pbb: 0.47619047619, pgj : 0.380952380952, reference : 0.142857142857
+Percentage: 0.717813051146
+Max Generations : 500
+Num Krill : 50
+
+Detail:
+Time Lapse : 256.06799984
+Nilai Fitness : 196.0
+Penalty Pbb : 135.0, penalty pgj : 108.0, penalty_reference : 40.5
+Max Penalty : 283.5
+Percentage pbb: 0.47619047619, pgj : 0.380952380952, reference : 0.142857142857
+Percentage: 0.691358024691
+Max Generations : 500
+Num Krill : 50
+
+Detail:
+Time Lapse : 699.997999907
+Nilai Fitness : 199.0
+Penalty Pbb : 135.0, penalty pgj : 108.0, penalty_reference : 40.5
+Max Penalty : 283.5
+Percentage pbb: 0.47619047619, pgj : 0.380952380952, reference : 0.142857142857
+Percentage: 0.701940035273
+Max Generations : 500
+Num Krill : 50
+
+Detail:
+Time Lapse : 219.411000013
+Nilai Fitness : 191.0
+Penalty Pbb : 135.0, penalty pgj : 108.0, penalty_reference : 40.5
+Max Penalty : 283.5
+Percentage pbb: 0.47619047619, pgj : 0.380952380952, reference : 0.142857142857
+Percentage: 0.673721340388
+Max Generations : 500
+Num Krill : 50
+

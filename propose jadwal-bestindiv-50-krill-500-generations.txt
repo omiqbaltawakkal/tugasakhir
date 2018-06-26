@@ -1,0 +1,29 @@
+Fitness Value : 191.0
+Max Penalty : 283.5
+1301142356, DJN, GAW, EKD, 0, jumat sore, ruang 0
+1301140015, FSV, RJL, DNH, 139, kamis sore, ruang 4
+1301140181, RSM, KMM, DQU, 93, senin sore, ruang 3
+1301144176, SPO, DWS, NWR, 87, senin siang, ruang 2
+1301140426, KMA, ITK, GGM, 83, senin pagi, ruang 3
+1301154674, VRE, NDN, YFA, 81, senin pagi, ruang 1
+1301140256, KMA, PHG, GAW, 79, jumat sore, ruang 4
+1301154219, KNR, TMY, RLW, 116, rabu siang, ruang 1
+1301144286, EMJ, ERF, DVR, 68, jumat pagi, ruang 3
+1301144101, ERF, RYJ, SKH, 80, senin pagi, ruang 0
+1301144416, VRE, MTD, KMA, 91, senin sore, ruang 1
+1301140016, SWD, KMA, IDL, 122, rabu sore, ruang 2
+1301144036, IDL, MTD, IML, 73, jumat siang, ruang 3
+1301140274, EMJ, MMA, ELY, 108, selasa sore, ruang 3
+1301144115, YRM, ADF, RAU, 67, jumat pagi, ruang 2
+1301144281, SMD, PMN, END, 135, kamis sore, ruang 0
+1301144086, VRE, KMA, IMM, 82, senin pagi, ruang 2
+1301140096, IBR, GGM, SWD, 37, rabu pagi, ruang 2
+1301144376, END, RYJ, MAN, 102, selasa siang, ruang 2
+1301144266, EKD, SYP, HPD, 112, rabu pagi, ruang 2
+1301140326, EMJ, MMA, NWR, 65, jumat pagi, ruang 0
+1301144211, MAN, ERF, RYJ, 69, jumat pagi, ruang 4
+1301144011, BBD, MVI, RIE, 58, kamis siang, ruang 3
+1301144391, SWD, HPD, MTD, 60, kamis sore, ruang 0
+1301154480, MMA, NGS, ERF, 94, senin sore, ruang 4
+1301144006, EMJ, MAN, NWR, 115, rabu siang, ruang 0
+1301154242, SPO, EMJ, NGS, 96, selasa pagi, ruang 1
